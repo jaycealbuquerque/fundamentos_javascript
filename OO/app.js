@@ -1,24 +1,35 @@
-class User {
-  // propriedades
-  constructor(name, sobrenome) {
+class Mammal {
+  constructor(species, name, age) {
+    this.species = species
     this.name = name
-    this.sobrenome = sobrenome
-    this.points = 0
+    this.age = age
+    this.mammaryGland = true
   }
-  // métodos
-  login() {
-    console.log(`${this.name} está logado`)
-    return this
-  }
-  addPoin() {
-    this.points++
-    return `${this.name} tem ${this.points > 1 ? 'pontos' : 'ponto'}`
 
+  incrementAge() {
+    this.age++
+    return this.age
   }
 }
 
-const name1 = new User('jeyce', 'albuquerque')
+class Lion extends Mammal {
+  constructor(species, name, age, manEater) {
+    super(species, name, age)
+    this.manEater = manEater
+  }
 
+  eatZebras(animals) {
+    return animals.filter(animal => animal.species !== 'zebra')
+  }
+}
 
-name1.login().addPoin()
-console.log(name1)
+const zeca = new Mammal('zebra', 'zeca', 6)
+const pompeu = new Mammal('gnu', 'popeu', 5)
+const angus = new Mammal('cavalo', 'angus', 3)
+const mufasa = new Lion('leao', 'mufasa', 6, false)
+
+const animals = [zeca, pompeu, angus]
+
+console.log(zeca.incrementAge())
+console.log(mufasa)
+console.log(mufasa.eatZebras(animals))
